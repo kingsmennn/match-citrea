@@ -115,7 +115,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { AccountType, RequestLifecycleIndex, User } from '@/types'
-import { collection, where, query, limit, getDocs } from 'firebase/firestore';
 import moment from 'moment'
 
 interface Props {
