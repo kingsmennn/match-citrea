@@ -125,7 +125,7 @@
 <script setup lang="ts">
 import { User, AccountType, STORE_KEY_MIDDLEWARE, STORE_KEY } from "@/types";
 import { useUserStore } from "@/pinia/user";
-import { Toaster } from "vue-sonner";
+import { toast, Toaster } from "vue-sonner";
 import { ellipsify } from "@/utils/ellipsify";
 
 const env = useRuntimeConfig().public;
@@ -177,4 +177,10 @@ watch(
     }
   }
 );
+watch(() => userStore.blockchainError.message, message => {
+  if (message) {
+    toast.error(message);
+    userStore.blockchainError.message = "";
+  }
+});
 </script>

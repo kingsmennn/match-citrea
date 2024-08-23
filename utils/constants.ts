@@ -1,7 +1,12 @@
-export const JSON_RPC = {
-  mainnet: "https://bsc-dataseed.binance.org/",
-  testnet: "https://data-seed-prebsc-2-s3.binance.org:8545/",
+export const chainName = "Sepolia";
+
+export const chainInfo = {
+  name: "Sepolia",
+  chainId: 11155111,
+  rpcUrl: "",
+  blockExplorer: "https://sepolia.etherscan.io",
 };
+
 export const LOCATION_DECIMALS = 18;
 export const PROJECT_ID = "73801621aec60dfaa2197c7640c15858";
 export const DEBUG = true;

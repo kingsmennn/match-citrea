@@ -13,8 +13,8 @@ import {
 } from "@/types";
 import {
   appMetaData,
+  chainInfo,
   DEBUG,
-  JSON_RPC,
   LOCATION_DECIMALS,
   PROJECT_ID,
 } from "@/utils/constants";
@@ -28,6 +28,7 @@ type UserStore = {
   storeDetails?: Store[];
   blockchainError: {
     userNotFound: boolean;
+    message?: string;
   };
 };
 
@@ -91,6 +92,20 @@ export const useUserStore = defineStore(STORE_KEY, {
       }
     },
 
+    async setUpEVMConnectEvents() {
+      window.ethereum!.on("accountsChanged", (accounts) => {
+        if (!accounts.length) {
+          this.disconnect();
+        }
+        this.accountId = accounts[0];
+      });
+
+      window.ethereum!.on("chainChanged", (chainId) => {
+        if (chainInfo.chainId !== parseInt(chainId)) {
+          this.blockchainError.message = `Please connect to ${chainInfo.name}`;
+        }
+      });
+    },
     async disconnect() {
       this.accountId = null;
       this.userDetails = undefined;
@@ -100,15 +115,16 @@ export const useUserStore = defineStore(STORE_KEY, {
     async getContract() {
       const env = useRuntimeConfig().public;
 
-      // if (!this.signer) {
-      //   throw new Error(
-      //     "Signer is not available. Please connect to MetaMask first."
-      //   );
-      // }
-
       const provider = getProvider();
 
       const signer = await provider.getSigner();
+
+      const network = await provider.getNetwork();
+      const chainId = network.chainId;
+
+      if (chainInfo.chainId !== Number(chainId)) {
+        this.blockchainError.message = `Please connect to ${chainInfo.name}`;
+      }
 
       return new ethers.Contract(env.contractId, marketAbi, signer);
     },
@@ -242,6 +258,7 @@ export const useUserStore = defineStore(STORE_KEY, {
       // Reconnect to MetaMask if the user is already connected
       if (context.store.accountId) {
         await context.store.connectToMetaMask();
+        await context.store.setUpEVMConnectEvents();
       }
     },
   },
