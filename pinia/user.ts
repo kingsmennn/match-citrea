@@ -23,14 +23,17 @@ import { useStoreStore } from "./store";
 
 type UserStore = {
   accountId: string | null;
-  provider: any | null;
-  signer: ethers.Signer | null;
+
   userDetails?: BlockchainUser;
   storeDetails?: Store[];
   blockchainError: {
     userNotFound: boolean;
   };
 };
+
+// window.ethereum.on('accountsChanged', (accounts) => {
+//   console.log('Accounts changed:', accounts);
+// });
 
 const getProvider = () => {
   const provider = new ethers.BrowserProvider(window.ethereum!);
@@ -40,8 +43,7 @@ const getProvider = () => {
 export const useUserStore = defineStore(STORE_KEY, {
   state: (): UserStore => ({
     accountId: null,
-    provider: null,
-    signer: null,
+
     userDetails: undefined,
     storeDetails: undefined,
     blockchainError: {
@@ -94,8 +96,6 @@ export const useUserStore = defineStore(STORE_KEY, {
     },
 
     async disconnect() {
-      this.provider = null;
-      this.signer = null;
       this.accountId = null;
       this.userDetails = undefined;
       this.blockchainError.userNotFound = false;
@@ -172,8 +172,6 @@ export const useUserStore = defineStore(STORE_KEY, {
       long,
       account_type,
     }: CreateUserDTO): Promise<ethers.ContractTransaction | undefined> {
-      if (!this.signer) return;
-
       try {
         const contract = await this.getContract();
         const tx = await contract.createUser(
@@ -206,8 +204,6 @@ export const useUserStore = defineStore(STORE_KEY, {
     }: Partial<CreateUserDTO>): Promise<
       { receipt: ethers.ContractTransaction; location: Location } | undefined
     > {
-      if (!this.signer) return;
-
       try {
         const contract = await this.getContract();
         const tx = await contract.updateUser(
