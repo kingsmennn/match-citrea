@@ -55,7 +55,7 @@
             >
               <span class="tw-text-sm tw-border-b tw-px-3 tw-py-2 tw-pb-1.5">
                 Active account id
-                <strong>{{ ellipsify(userStore.accountId, 5) }}</strong>
+                <strong>{{ ellipsify(userStore.accountId!, 5) }}</strong>
               </span>
               <div
                 class="tw-flex tw-gap-y-3 tw-px-3 tw-pb-3 [&>*]:tw-flex-1 tw-text-center"
