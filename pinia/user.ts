@@ -32,6 +32,11 @@ type UserStore = {
   };
 };
 
+const getSigner = async () => {
+  const provider = new ethers.BrowserProvider(window.ethereum!);
+  return provider.getSigner();
+};
+
 export const useUserStore = defineStore(STORE_KEY, {
   state: (): UserStore => ({
     accountId: null,
@@ -70,10 +75,6 @@ export const useUserStore = defineStore(STORE_KEY, {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
-
-        // Create a provider and signer
-        this.provider = new ethers.BrowserProvider(window.ethereum);
-        this.signer = this.provider.getSigner();
 
         // Set the account ID (address)
         this.accountId = accounts[0];
