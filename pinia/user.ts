@@ -31,10 +31,6 @@ type UserStore = {
   };
 };
 
-// window.ethereum.on('accountsChanged', (accounts) => {
-//   console.log('Accounts changed:', accounts);
-// });
-
 const getProvider = () => {
   const provider = new ethers.BrowserProvider(window.ethereum!);
   return provider;

@@ -70,9 +70,15 @@ const fetchUserRequests = async () => {
     loading.value = false
   }
 }
-const unwatch = watch(()=>userStore.contract.state, async (val)=>{
-  if(!val || val !== HashConnectConnectionState.Paired) return
-  fetchUserRequests()
-}, { immediate: true })
+onMounted(()=>{
+  window.ethereum.on('accountsChanged', (accounts) => {
+    // console.log('Accounts changed:', accounts);
+    fetchUserRequests()
+  });
+})
+// const unwatch = watch(()=>userStore.contract.state, async (val)=>{
+//   if(!val || val !== HashConnectConnectionState.Paired) return
+//   fetchUserRequests()
+// }, { immediate: true })
 const userRequestList = computed(()=>requestsStore.list)
 </script>

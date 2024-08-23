@@ -146,10 +146,17 @@ const fetchUserRequest = async () => {
   const res = await requestsStore.getRequest(route.params.id as unknown as number)
   requestDetails.value = res
 }
-const unwatch = watch(()=>userStore.contract.state, (val)=>{
-  if(!val || val !== HashConnectConnectionState.Paired ) return
-  fetchUserRequest()
-}, { immediate: true })
+
+onMounted(()=>{
+  window.ethereum.on('accountsChanged', (accounts) => {
+    // console.log('Accounts changed:', accounts);
+    fetchUserRequest()
+  });
+})
+// const unwatch = watch(()=>userStore.contract.state, (val)=>{
+//   if(!val || val !== HashConnectConnectionState.Paired ) return
+//   fetchUserRequest()
+// }, { immediate: true })
 
 const timeAgo = computed<string>(()=>{
   if(!requestDetails.value) return ''
