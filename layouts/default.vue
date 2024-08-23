@@ -143,7 +143,7 @@ const connecting = ref(false);
 const handleWalletConnect = async () => {
   connecting.value = true;
   try {
-    await userStore.connectToHashConnect();
+    await userStore.connectToMetaMask();
     // once connected the subscription function will update the user store
   } catch (e) {
     // haldle errors
