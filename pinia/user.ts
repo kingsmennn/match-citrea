@@ -123,7 +123,9 @@ export const useUserStore = defineStore(STORE_KEY, {
       const chainId = network.chainId;
 
       if (chainInfo.chainId !== Number(chainId)) {
-        this.blockchainError.message = `Please connect to ${chainInfo.name}`;
+        const error = `Please connect to ${chainInfo.name}`;
+        this.blockchainError.message = error;
+        throw error;
       }
 
       return new ethers.Contract(env.contractId, marketAbi, signer);

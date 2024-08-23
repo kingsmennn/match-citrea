@@ -244,13 +244,16 @@ const handleNewRequest = async () => {
   }
 
   try {
-    await requestsStore.createRequest({
+    const response = await requestsStore.createRequest({
       name: form.value.name,
       description: form.value.description,
       images: form.value.images,
       longitude: userStore.location?.[0]!,
       latitude: userStore.location?.[1]!,
     });
+    if (typeof response === "undefined") {
+      return;
+    }
     resetForm();
     // get request details
     // setTimeout(()=>router.push('/requests/'+res.key), 3000)
