@@ -29,7 +29,7 @@ export const useRequestsStore = defineStore("requests", {
       const env = useRuntimeConfig().public;
 
       try {
-        const contract = userStore.getContract();
+        const contract = await userStore.getContract();
 
         const receipt = await contract.createRequest(
           name,
@@ -64,7 +64,7 @@ export const useRequestsStore = defineStore("requests", {
       const userStore = useUserStore();
 
       try {
-        const contract = userStore.getContract();
+        const contract = await userStore.getContract();
         const res = await contract.requests(requestId);
 
         const request: RequestResponse = {
@@ -91,7 +91,7 @@ export const useRequestsStore = defineStore("requests", {
     async getRequestImages(request_id: number): Promise<string[] | undefined> {
       const userStore = useUserStore();
 
-      const contract = userStore.getContract();
+      const contract = await userStore.getContract();
       const length = await contract.getRequestImagesLength(request_id);
 
       const images = [];
@@ -141,7 +141,7 @@ export const useRequestsStore = defineStore("requests", {
       const env = useRuntimeConfig().public;
 
       try {
-        const contract = userStore.getContract();
+        const contract = await userStore.getContract();
 
         const receipt = await contract.createOffer(
           price,
@@ -161,7 +161,7 @@ export const useRequestsStore = defineStore("requests", {
       const env = useRuntimeConfig().public;
 
       try {
-        const contract = userStore.getContract();
+        const contract = await userStore.getContract();
 
         const receipt = await contract.acceptOffer(offerId);
         return receipt;

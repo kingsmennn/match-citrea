@@ -32,9 +32,9 @@ type UserStore = {
   };
 };
 
-const getSigner = async () => {
+const getSigner = () => {
   const provider = new ethers.BrowserProvider(window.ethereum!);
-  return provider.getSigner();
+  return provider;
 };
 
 export const useUserStore = defineStore(STORE_KEY, {
@@ -101,20 +101,24 @@ export const useUserStore = defineStore(STORE_KEY, {
       this.blockchainError.userNotFound = false;
     },
 
-    getContract() {
+    async getContract() {
       const env = useRuntimeConfig().public;
 
-      if (!this.signer) {
-        throw new Error(
-          "Signer is not available. Please connect to MetaMask first."
-        );
-      }
+      // if (!this.signer) {
+      //   throw new Error(
+      //     "Signer is not available. Please connect to MetaMask first."
+      //   );
+      // }
 
-      return new ethers.Contract(env.contractId, marketAbi, this.signer);
+      const provider = getSigner();
+
+      const signer = await provider.getSigner();
+
+      return new ethers.Contract(env.contractId, marketAbi, signer);
     },
 
     async fetchUser(account_id: string): Promise<BlockchainUser> {
-      const contract = this.getContract();
+      const contract = await this.getContract();
       const userAddress = await getEvmAddress(account_id);
 
       const user = await contract.users(userAddress);
@@ -171,7 +175,7 @@ export const useUserStore = defineStore(STORE_KEY, {
       if (!this.signer) return;
 
       try {
-        const contract = this.getContract();
+        const contract = await this.getContract();
         const tx = await contract.createUser(
           username,
           phone,
@@ -205,7 +209,7 @@ export const useUserStore = defineStore(STORE_KEY, {
       if (!this.signer) return;
 
       try {
-        const contract = this.getContract();
+        const contract = await this.getContract();
         const tx = await contract.updateUser(
           username || this.userDetails?.[1],
           phone || this.userDetails?.[2],
