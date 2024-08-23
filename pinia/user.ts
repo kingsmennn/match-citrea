@@ -14,7 +14,7 @@ import {
 import {
   appMetaData,
   DEBUG,
-  HEDERA_JSON_RPC,
+  JSON_RPC,
   LOCATION_DECIMALS,
   PROJECT_ID,
 } from "@/utils/constants";
@@ -192,7 +192,6 @@ export const useUserStore = defineStore(STORE_KEY, {
         console.error("Error creating user:", error);
       }
     },
-
     async updateUser({
       username,
       phone,
