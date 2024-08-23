@@ -32,7 +32,7 @@ type UserStore = {
   };
 };
 
-const getSigner = () => {
+const getProvider = () => {
   const provider = new ethers.BrowserProvider(window.ethereum!);
   return provider;
 };
@@ -110,7 +110,7 @@ export const useUserStore = defineStore(STORE_KEY, {
       //   );
       // }
 
-      const provider = getSigner();
+      const provider = getProvider();
 
       const signer = await provider.getSigner();
 
