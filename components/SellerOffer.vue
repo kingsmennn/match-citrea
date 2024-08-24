@@ -24,7 +24,7 @@
         @click="handleAcceptBtnClick"
         :disabled="
           (lifecycle === RequestLifecycleIndex.REQUEST_LOCKED || lifecycle === RequestLifecycleIndex.COMPLETED) ||
-          submiting
+          submiting || isAccepted
         ">
         <template v-if="!submiting">
           Accept
@@ -55,6 +55,7 @@ interface Props {
   buyerId: number
   sellerId: string
   storeName: string
+  isAccepted?: boolean
 }
 const props = defineProps<Props>()
 

@@ -5,6 +5,7 @@
       class="tw-border-2 tw-border-black/10 tw-relative tw-z-10 tw-bg-white
       tw-group tw-overflow-hidden tw-flex tw-flex-col tw-h-full">
       <div class="tw-p-2 tw-flex-1">
+        lifecycle - {{ lifecycle }}
         <div class="sm:tw-flex">
           <div class="tw-flex-grow tw-flex tw-gap-2">
             <div
@@ -19,7 +20,7 @@
               <h3 class="tw-text-xl tw-truncate tw-font-semibold">{{ itemName }}</h3>
               <p class="tw-text-sm">ID: {{ requestId }}</p>
 
-              <template v-if="lifecycle===RequestLifecycleIndex.REQUEST_LOCKED || lifecycle===RequestLifecycleIndex.COMPLETED">
+              <template v-if="hasLocked && lifecycle===RequestLifecycleIndex.ACCEPTED_BY_BUYER">
                 <p class="tw-text-sm">Buyer: {{ buyer?.username }}</p>
                 <p class="tw-text-sm">Seller: {{ lockedSeller?.username }}</p>
                 <p class="tw-text-sm">Price: ₦{{ Number(sellersPriceQuote).toLocaleString() }}</p>
@@ -75,15 +76,15 @@
           <div class="tw-flex tw-justify-center tw-items-center tw-gap-1">
             <v-icon>
               {{
-                lifecycle===RequestLifecycleIndex.REQUEST_LOCKED ||
-                lifecycle===RequestLifecycleIndex.COMPLETED ?
+                hasLocked &&
+                lifecycle===RequestLifecycleIndex.ACCEPTED_BY_BUYER ?
                 'mdi-lock' : 'mdi-timelapse'
               }}
             </v-icon>
             <span>
               {{
-                lifecycle===RequestLifecycleIndex.REQUEST_LOCKED ||
-                lifecycle===RequestLifecycleIndex.COMPLETED ?
+                hasLocked &&
+                lifecycle===RequestLifecycleIndex.ACCEPTED_BY_BUYER ?
                 'locked' : 'locks in 15mins'
               }}
             </span>
@@ -116,6 +117,8 @@
 import { computed } from 'vue'
 import { AccountType, RequestLifecycleIndex, User } from '@/types'
 import moment from 'moment'
+import { useRequestsStore } from '@/pinia/request';
+import { TIME_TILL_LOCK } from '@/utils/constants';
 
 interface Props {
   requestId: number
@@ -124,6 +127,7 @@ interface Props {
   itemName: string
   thumbnail: string
   createdAt: Date
+  updatedAt: Date
   accountType: AccountType
   sellersPriceQuote: number | null
   buyerAddress: string
@@ -133,7 +137,15 @@ interface Props {
 const props = defineProps<Props>()
 const completed = ref(!!props?.isCompleted)
 
+const requestStore = useRequestsStore()
+const hasLocked = computed(()=>requestStore.hasLocked({updatedAt: props.updatedAt, period: TIME_TILL_LOCK}))
 const lifecycleProgress = computed<number>(()=>{
+  if(
+    hasLocked.value &&
+    RequestLifecycleIndex.ACCEPTED_BY_BUYER &&
+    props.accountType === AccountType.BUYER
+  ) return 100
+
   switch (props.lifecycle) {
     case RequestLifecycleIndex.PENDING:
       return (100/3)

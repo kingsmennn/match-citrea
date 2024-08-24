@@ -62,6 +62,7 @@
             <template v-if="isBuyer" >
               <div v-if="renderedOffers.length" class="tw-space-y-4">
                 <template v-for="(offer,n) in renderedOffers" :key="n">
+                  <!-- {{ offer }} -->
                   <SellerOffer
                     :offer-id="offer.offerId!"
                     :request-id="requestDetails.requestId"
@@ -71,6 +72,7 @@
                     :images="offer.images"
                     :lifecycle="requestDetails.lifecycle"
                     :price-quote="offer.price"
+                    :is-accepted="offer.isAccepted"
                   />
                 </template>
               </div>
@@ -196,9 +198,10 @@ watch(()=>requestDetails.value?.requestId, (val)=>{
 }, { immediate: true })
 
 const renderedOffers = computed(()=>{
-  return allOffers.value
+  if(requestDetails.value?.lifecycle === RequestLifecycleIndex.ACCEPTED_BY_BUYER) {
+    return allOffers.value
+  }
   return (
-    requestDetails.value?.lifecycle === RequestLifecycleIndex.ACCEPTED_BY_BUYER ||
     requestDetails.value?.lifecycle === RequestLifecycleIndex.REQUEST_LOCKED ||
     requestDetails.value?.lifecycle === RequestLifecycleIndex.COMPLETED
   )

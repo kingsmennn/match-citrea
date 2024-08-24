@@ -15,7 +15,17 @@ export const useRequestsStore = defineStore("requests", {
   state: (): RequestsStoreType => ({
     list: [],
   }),
-  getters: {},
+  getters: {
+    hasLocked() {
+      return ({updatedAt, period}:{updatedAt: Date, period: number}) => {
+        const updatedAtTime = updatedAt.getTime()
+        const currentTime = Date.now();
+        
+        // Check if the duration plus updatedAt has passed the current time
+        return currentTime >= updatedAtTime + period;
+      }
+    }
+  },
   actions: {
     async createRequest({
       name,

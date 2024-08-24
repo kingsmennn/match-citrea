@@ -17,3 +17,5 @@ export const appMetaData = {
   icons: [window.location.origin + "/favicon.ico"],
   url: window.location.origin,
 };
+
+export const TIME_TILL_LOCK = 15 * 60 * 1000 // ms
