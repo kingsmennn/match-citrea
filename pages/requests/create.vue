@@ -255,6 +255,7 @@ const handleNewRequest = async () => {
       return;
     }
     resetForm();
+    toast.success("Request created successfully");
     // get request details
     // setTimeout(()=>router.push('/requests/'+res.key), 3000)
   } catch (error) {
