@@ -178,21 +178,27 @@
       <div
         class="tw-flex tw-flex-col sm:tw-flex-row tw-gap-10 tw-justify-between"
       >
-        <NuxtLink
-          to="/register?user_type=buyer"
-          class="tw-inline-flex tw-justify-between tw-text-4xl tw-font-bold tw-gap-2 tw-flex-grow sm:tw-max-w-[50%] tw-border-b tw-border-black"
+        <button
+          @click="()=> {
+            handleWalletConnect();
+            // router
+          }"
+          class="tw-inline-flex tw-justify-between tw-text-4xl tw-font-bold tw-gap-2 tw-flex-grow sm:tw-max-w-[50%] tw-border-b tw-border-solid tw-border-black"
         >
           <span>Register as buyer</span>
           <v-icon>mdi-arrow-right</v-icon>
-        </NuxtLink>
+        </button>
 
-        <NuxtLink
-          to="/register?user_type=seller"
-          class="tw-inline-flex tw-justify-between tw-text-4xl tw-font-bold tw-gap-2 tw-flex-grow sm:tw-max-w-[50%] tw-border-b tw-border-black"
+        <button
+          @click="()=> {
+          handleWalletConnect();
+          // router
+      }"
+          class="tw-inline-flex tw-justify-between tw-text-4xl tw-font-bold tw-gap-2 tw-flex-grow sm:tw-max-w-[50%] tw-border-b tw-border-solid tw-border-black"
         >
           <span>Register as seller</span>
           <v-icon>mdi-arrow-right</v-icon>
-        </NuxtLink>
+        </button>
       </div>
     </div>
   </div>
@@ -200,7 +206,6 @@
 
 <script setup lang="ts">
 import Tabs from "@/components/Tabs.vue";
-import { signOut } from "firebase/auth";
 import { User, AccountType, STORE_KEY_MIDDLEWARE, STORE_KEY } from "@/types";
 import { useUserStore } from "@/pinia/user";
 

@@ -152,29 +152,29 @@ const lifecycleProgress = computed<number>(()=>{
 
 const timeAgo = computed<string>(()=>moment(props.createdAt).fromNow())
 
-const db = useFirestore()
-const getUserDetails = async ({ uId }: { uId: string | null }) => {
-  return new Promise<User>(async (resolve, reject) => {
-    if (!uId) return resolve(null as unknown as User)
-    const q = query(collection(db, "users"), where("id", "==", uId), limit(1));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach(async (doc) => {
-      const user = doc.data() as User
-      resolve(user)
-    })
-  })
-}
+// const db = useFirestore()
+// const getUserDetails = async ({ uId }: { uId: string | null }) => {
+//   return new Promise<User>(async (resolve, reject) => {
+//     if (!uId) return resolve(null as unknown as User)
+//     const q = query(collection(db, "users"), where("id", "==", uId), limit(1));
+//     const querySnapshot = await getDocs(q);
+//     querySnapshot.forEach(async (doc) => {
+//       const user = doc.data() as User
+//       resolve(user)
+//     })
+//   })
+// }
 const buyer = ref<User | null>(null)
 const lockedSeller = ref<User | null>(null)
-onMounted(()=>{
-  Promise.all([
-    getUserDetails({ uId: props.buyerAddress }),
-    getUserDetails({ uId: props.lockedSellerAddress || null }),
-  ]).then(([buyerDetails, lockedSellerDetails]) => {
-    buyer.value = buyerDetails
-    lockedSeller.value = lockedSellerDetails
-  }).catch((err) => {
-    console.log(err)
-  })
-})
+// onMounted(()=>{
+//   Promise.all([
+//     getUserDetails({ uId: props.buyerAddress }),
+//     getUserDetails({ uId: props.lockedSellerAddress || null }),
+//   ]).then(([buyerDetails, lockedSellerDetails]) => {
+//     buyer.value = buyerDetails
+//     lockedSeller.value = lockedSellerDetails
+//   }).catch((err) => {
+//     console.log(err)
+//   })
+// })
 </script>
