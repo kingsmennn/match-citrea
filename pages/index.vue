@@ -181,7 +181,9 @@
         <button
           @click="()=> {
             handleWalletConnect();
-            // router
+            router.push({
+              query: {user_type: AccountType.BUYER }
+            })
           }"
           class="tw-inline-flex tw-justify-between tw-text-4xl tw-font-bold tw-gap-2 tw-flex-grow sm:tw-max-w-[50%] tw-border-b tw-border-solid tw-border-black"
         >
@@ -192,7 +194,9 @@
         <button
           @click="()=> {
           handleWalletConnect();
-          // router
+          router.push({
+            query: {user_type: AccountType.SELLER }
+          })
       }"
           class="tw-inline-flex tw-justify-between tw-text-4xl tw-font-bold tw-gap-2 tw-flex-grow sm:tw-max-w-[50%] tw-border-b tw-border-solid tw-border-black"
         >

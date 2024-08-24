@@ -98,7 +98,7 @@ type Props = {
   sellerIds: number[]
   images: string[] | null // used to pass default images for after offer is submitted
   quotePrice: number | null // used to pass default price for after offer is submitted
-  offerId: string | null // used to update offer
+  offerId: number | null // used to update offer
   lockedSellerId: number | null // used to check if seller is locked
 }
 const props = defineProps<Props>()

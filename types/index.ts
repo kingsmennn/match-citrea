@@ -43,7 +43,7 @@ export enum RequestLifecycleIndex {
 }
 
 export type Request = {
-  id?: string;
+  id?: number;
   name: string;
   buyerId: string;
   sellersPriceQuote?: number;
@@ -81,7 +81,8 @@ export type RequestResponse = {
 }
 
 export type Offer = {
-  id?: string;
+  id?: number;
+  offerId?: number
   price: number;
   images: string[];
   requestId: string;

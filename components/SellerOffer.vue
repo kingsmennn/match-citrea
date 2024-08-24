@@ -47,7 +47,7 @@ import { useRequestsStore } from '@/pinia/request';
 import { toast } from 'vue-sonner';
 
 interface Props {
-  offerId: string
+  offerId: number
   requestId: number
   lifecycle: RequestLifecycleIndex
   images: string[]
@@ -69,7 +69,7 @@ const requestStore = useRequestsStore()
 const handleAcceptBtnClick = async () =>{
   submiting.value = true
   try {
-    await requestStore.acceptOffer(props.requestId)
+    await requestStore.acceptOffer(props.offerId)
     toast.success("offer accepted!")
   } catch (error) {
     console.log(error)
