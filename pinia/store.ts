@@ -24,7 +24,7 @@ export const useStoreStore = defineStore(STORE_STORE_KEY, {
           lat: Math.trunc(latitude * 10 ** LOCATION_DECIMALS),
         };
 
-        const contract = userStore.getContract();
+        const contract = await userStore.getContract();
 
         const receipt = await contract.createStore(
           payload.name,
@@ -51,7 +51,7 @@ export const useStoreStore = defineStore(STORE_STORE_KEY, {
 
       try {
         const userAddress = await getEvmAddress(accountId);
-        const contract = userStore.getContract();
+        const contract = await userStore.getContract();
         const storeCount = await contract.userStoreCount(userAddress);
         const stores = [];
         for (let i = 0; i < storeCount; i++) {
@@ -68,7 +68,7 @@ export const useStoreStore = defineStore(STORE_STORE_KEY, {
       const userStore = useUserStore();
 
       const userAddress = await getEvmAddress(accountId);
-      const contract = userStore.getContract();
+      const contract = await userStore.getContract();
       const storeIds = await contract.userStoreIds(userAddress, index);
       return storeIds;
     },
@@ -76,7 +76,7 @@ export const useStoreStore = defineStore(STORE_STORE_KEY, {
       const userStore = useUserStore();
 
       const userAddress = await getEvmAddress(accountId);
-      const contract = userStore.getContract();
+      const contract = await userStore.getContract();
       const store = await contract.userStores(userAddress, storeId);
       return store;
     },
