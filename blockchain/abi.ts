@@ -119,6 +119,12 @@ export const marketAbi = [
         name: "sellerId",
         type: "uint256",
       },
+      {
+        indexed: false,
+        internalType: "uint256[]",
+        name: "sellerIds",
+        type: "uint256[]",
+      },
     ],
     name: "OfferCreated",
     type: "event",
