@@ -135,12 +135,8 @@ onBeforeMount(()=>{
 
 const requestsStore = useRequestsStore()
 onMounted(()=>{
-  requestsStore.fetchAllUserRequests(userStore.accountId!)
-})
-
-onMounted(()=>{
   if (isSeller.value) {
-    // fetchSellersAcceptedOfferIds()
+    requestsStore.fetchAllSellersRequests(userStore.accountId!)
     return
   }
 
@@ -148,19 +144,18 @@ onMounted(()=>{
 })
 
 const activeRequestList = computed(() => {
-  if (isSeller.value) {
-    return []
-    // return sellerRequestList.value.filter(request => request.lifecycle !== RequestLifecycle.COMPLETED).reverse()
-  }
+  // if (isSeller.value) {
+  //   // return sellerRequestList.value.filter(request => request.lifecycle !== RequestLifecycle.COMPLETED).reverse()
+  // }
   return requestsStore.list.filter(request=>{
     return request.lifecycle !== RequestLifecycleIndex.COMPLETED
   })
 })
 
 const completedRequestList = computed(() => {
-  if (isSeller.value) {
-    // return sellerRequestList.value.filter(request => request.lifecycle === RequestLifecycle.COMPLETED).reverse()
-  }
+  // if (isSeller.value) {
+  //   // return sellerRequestList.value.filter(request => request.lifecycle === RequestLifecycle.COMPLETED).reverse()
+  // }
   return requestsStore.list.filter(request=>{
     return request.lifecycle === RequestLifecycleIndex.COMPLETED
   })

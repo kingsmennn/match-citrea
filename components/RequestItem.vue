@@ -4,9 +4,8 @@
       :class="{ 'tw-text-gray-400 !tw-border-black/5': completed }"
       class="tw-border-2 tw-border-black/10 tw-relative tw-z-10 tw-bg-white
       tw-group tw-overflow-hidden tw-flex tw-flex-col tw-h-full">
-      <div class="tw-p-2 tw-flex-1">
-        lifecycle - {{ lifecycle }}
-        <div class="sm:tw-flex">
+      <div class="tw-p-2 tw-flex tw-flex-1">
+        <div class="sm:tw-flex tw-flex-1">
           <div class="tw-flex-grow tw-flex tw-gap-2">
             <div
               :class="{ 'tw-opacity-40 tw-saturate-0': completed }"

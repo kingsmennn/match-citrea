@@ -70,6 +70,23 @@ export const useRequestsStore = defineStore("requests", {
         console.log({ error });
       }
     },
+    async fetchAllSellersRequests(accountId: string) {
+      const env = useRuntimeConfig().public;
+      const userAddress = await getEvmAddress(accountId);
+
+      try {
+        const res = await $fetch<RequestResponse[]>(
+          `${env.matchApiUrl}/accepted-requests/${userAddress}`,
+          {
+            method: "GET",
+          }
+        );
+        this.list = res;
+        return res;
+      } catch (error) {
+        console.log({ error });
+      }
+    },
     async getRequest(requestId: number) {
       const userStore = useUserStore();
 
