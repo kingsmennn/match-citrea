@@ -20,9 +20,9 @@
               <p class="tw-text-sm">ID: {{ requestId }}</p>
 
               <template v-if="hasLocked && lifecycle===RequestLifecycleIndex.ACCEPTED_BY_BUYER">
-                <p class="tw-text-sm">Buyer: {{ buyer?.username }}</p>
-                <p class="tw-text-sm">Seller: {{ lockedSeller?.username }}</p>
-                <p class="tw-text-sm">Price: ₦{{ Number(sellersPriceQuote).toLocaleString() }}</p>
+                <p class="tw-text-sm">Store name: <strong>{{ usedSellerStoreDetails?.name }}</strong></p>
+                <p class="tw-text-sm">Contact number: <strong>{{ usedSellerStoreDetails?.phone }}</strong></p>
+                <p class="tw-text-sm">Price: <strong>₦{{ Number(sellersPriceQuote).toLocaleString() }}</strong></p>
               </template>
             </div>
           </div>
@@ -114,10 +114,12 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { AccountType, RequestLifecycleIndex, User } from '@/types'
+import { AccountType, RequestLifecycleIndex, Store, User } from '@/types'
 import moment from 'moment'
 import { useRequestsStore } from '@/pinia/request';
 import { TIME_TILL_LOCK } from '@/utils/constants';
+import { useUserStore } from '@/pinia/user';
+import { useStoreStore } from '@/pinia/store';
 
 interface Props {
   requestId: number
@@ -130,7 +132,7 @@ interface Props {
   accountType: AccountType
   sellersPriceQuote: number | null
   buyerAddress: string
-  lockedSellerAddress: number | null
+  lockedSellerId: number | null
 }
 
 const props = defineProps<Props>()
@@ -160,32 +162,38 @@ const lifecycleProgress = computed<number>(()=>{
       return 0
   }
 })
-
 const timeAgo = computed<string>(()=>moment(props.createdAt).fromNow())
 
-// const db = useFirestore()
-// const getUserDetails = async ({ uId }: { uId: string | null }) => {
-//   return new Promise<User>(async (resolve, reject) => {
-//     if (!uId) return resolve(null as unknown as User)
-//     const q = query(collection(db, "users"), where("id", "==", uId), limit(1));
-//     const querySnapshot = await getDocs(q);
-//     querySnapshot.forEach(async (doc) => {
-//       const user = doc.data() as User
-//       resolve(user)
-//     })
-//   })
-// }
 const buyer = ref<User | null>(null)
 const lockedSeller = ref<User | null>(null)
-// onMounted(()=>{
-//   Promise.all([
-//     getUserDetails({ uId: props.buyerAddress }),
-//     getUserDetails({ uId: props.lockedSellerAddress || null }),
-//   ]).then(([buyerDetails, lockedSellerDetails]) => {
-//     buyer.value = buyerDetails
-//     lockedSeller.value = lockedSellerDetails
-//   }).catch((err) => {
-//     console.log(err)
-//   })
-// })
+
+const userStore = useUserStore()
+const storesStore = useStoreStore()
+
+const sellerStore = ref<Store>()
+const usedSellerStoreDetails = computed(()=>{
+  const store = sellerStore.value as unknown as [number, string, string, string, [number, number]]
+  if(!store) return undefined
+  return {
+      id: Number(store[0]),
+      name: store[1],
+      description: store[2],
+      phone: store[3],
+      location: [
+        Number(store[4][0]),
+        Number(store[4][1])
+      ]
+    }
+})
+watch(()=>props.lockedSellerId, async (val)=>{
+  if(!val) return
+  try {
+    const res = await userStore.fetchUserById(props.lockedSellerId!) as unknown as { userAddress: string }
+    const stores = await storesStore.getUserStores(res?.userAddress)
+    if(!stores) return
+    sellerStore.value = !!stores[0] ? stores[0] : undefined
+  } catch (error) {
+    console.log(error)
+  }
+}, { immediate: true })
 </script>

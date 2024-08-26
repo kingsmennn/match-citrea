@@ -11,6 +11,7 @@ export const useStoreStore = defineStore(STORE_STORE_KEY, {
     async createStore({
       name,
       description,
+      phone,
       latitude,
       longitude,
     }: CreateStoreDTO): Promise<any | undefined> {
@@ -20,6 +21,7 @@ export const useStoreStore = defineStore(STORE_STORE_KEY, {
         const payload = {
           name,
           description,
+          phone,
           long: Math.trunc(longitude * 10 ** LOCATION_DECIMALS),
           lat: Math.trunc(latitude * 10 ** LOCATION_DECIMALS),
         };
@@ -29,8 +31,9 @@ export const useStoreStore = defineStore(STORE_STORE_KEY, {
         const receipt = await contract.createStore(
           payload.name,
           payload.description,
-          payload.lat,
-          payload.long
+          payload.phone,
+          payload.lat.toString(),
+          payload.long.toString()
         );
 
         // save to store
@@ -38,6 +41,7 @@ export const useStoreStore = defineStore(STORE_STORE_KEY, {
           {
             name: payload.name,
             description: payload.description,
+            phone: payload.phone,
             location: [payload.long, payload.lat],
           },
         ];

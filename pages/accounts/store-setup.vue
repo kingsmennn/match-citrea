@@ -48,6 +48,7 @@ const complete = async () => {
     await storesStore.createStore({
       name: form.value.storeName,
       description: form.value.description,
+      phone: form.value.phone,
       longitude: location.value.lng || 0,
       latitude: location.value.lat || 0,
     })

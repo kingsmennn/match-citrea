@@ -18,4 +18,4 @@ export const appMetaData = {
   url: window.location.origin,
 };
 
-export const TIME_TILL_LOCK = 15 * 60 * 1000 // ms
+export const TIME_TILL_LOCK = 1 * 60 * 1000 // ms

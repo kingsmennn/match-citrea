@@ -130,7 +130,6 @@ export const useUserStore = defineStore(STORE_KEY, {
 
       return new ethers.Contract(env.contractId, marketAbi, signer);
     },
-
     async fetchUser(account_id: string): Promise<BlockchainUser> {
       const contract = await this.getContract();
       const userAddress = await getEvmAddress(account_id);
@@ -138,7 +137,20 @@ export const useUserStore = defineStore(STORE_KEY, {
       const user = await contract.users(userAddress);
       return user;
     },
-
+    async fetchUserById(userId: number) {
+      const env = useRuntimeConfig().public;
+      try {
+        const res = await $fetch<User>(
+          `${env.matchApiUrl}/user/${userId}`,
+          {
+            method: "GET",
+          }
+        );
+        return res;
+      } catch (error) {
+        console.log({ error });
+      }
+    },
     async storeUserDetails(user: BlockchainUser) {
       const userCookie = useCookie<User>(STORE_KEY_MIDDLEWARE);
 

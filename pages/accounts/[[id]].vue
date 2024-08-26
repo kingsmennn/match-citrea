@@ -54,7 +54,7 @@
               :updated-at="new Date(request.updatedAt * 1000)"
               :buyerId="request.buyerAddress"
               :buyer-address="request.buyerAddress!"
-              :locked-seller-address="request.lockedSellerId ?? null"
+              :lockedSellerId="request.lockedSellerId ?? null"
               :sellers-price-quote="request.sellersPriceQuote ?? null"
               :account-type="userStore.accountType!"
             />
@@ -71,7 +71,7 @@
               :updated-at="new Date(request.updatedAt * 1000)"
               :buyerId="request.buyerAddress"
               :buyer-address="request.buyerAddress!"
-              :locked-seller-address="request.lockedSellerId ?? null"
+              :lockedSellerId="request.lockedSellerId ?? null"
               :sellers-price-quote="request.sellersPriceQuote ?? null"
               :account-type="userStore.accountType!"
               is-completed
@@ -160,80 +160,4 @@ const completedRequestList = computed(() => {
     return request.lifecycle === RequestLifecycleIndex.COMPLETED
   })
 })
-
-// const userRequestList = ref<Request[]>([])
-
-// const requestIdsWithAcceptedOffersFromSeller = ref<string[]>([])
-// const fetchSellersAcceptedOfferIds = async () => {
-// }
-// const sellerRequestList = ref<Request[]>([])
 </script>
-
-<!-- <script setup lang="ts">
-import { getDatabase, ref as RTDBRef, equalTo, orderByChild, query, onValue } from "firebase/database";
-
-
-
-const isCompletedNow = ref(false)
-const isCompleted = computed(()=>!!userCookie.value?.username)
-
-
-const user = useCurrentUser()
-const userCookie = useCookie<User>('user')
-const userInitial = computed(() => userCookie.value?.username?.charAt(0).toUpperCase() ?? '?')
-const isSeller = computed(() => userCookie.value?.accountType === AccountType.SELLER)
-const isBuyer = computed(() => userCookie.value?.accountType === AccountType.BUYER) 
-
-const userRequestList = ref<Request[]>([])
-// fetching from firebase RTDB
-const fetchUserRequests = async () => {
-  const db = getDatabase();
-  const myRequestsRef = query(RTDBRef(db, 'requests/'), orderByChild('buyerId'), equalTo(user.value?.uid!))
-  onValue(myRequestsRef, (snapshot) => {
-    const newRequestList: Request[] = []
-    snapshot.forEach((childSnapshot) => {
-      const childKey = childSnapshot.key;
-      const childData = childSnapshot.val();
-      newRequestList.push({
-        id: childKey,
-        ...childData,
-      } as Request)
-    });
-    userRequestList.value = newRequestList
-  });
-}
-
-
-const requestIdsWithAcceptedOffersFromSeller = ref<string[]>([])
-const fetchSellersAcceptedOfferIds = async () => {
-  const db = getDatabase();
-
-  const sellerOfferRef = query(RTDBRef(db, 'offers/'), orderByChild('sellerId'), equalTo(user.value?.uid!))
-  onValue(sellerOfferRef, (snapshot) => {
-    const list:string[] = []
-    snapshot.forEach((childSnapshot) => {
-      const childData = childSnapshot.val();
-      list.push(childData.requestId)
-    })
-    requestIdsWithAcceptedOffersFromSeller.value = list
-  })
-}
-const sellerRequestList = ref<Request[]>([])
-watch(()=>requestIdsWithAcceptedOffersFromSeller.value, (value)=>{
-  sellerRequestList.value = []
-  const db = getDatabase();
-  value.map((requestId)=>{
-    const acceptedRequestsRef = RTDBRef(db, 'requests/'+ requestId)
-    onValue(acceptedRequestsRef, (snapshot) => {
-      const data = {
-        ...snapshot.val(),
-        id: snapshot.key
-      }
-      // if sellers offer was not the one accepted, then don't show it
-      if(data.lifecycle !== RequestLifecycle.ACCEPTED_BY_SELLER && data.lockedSellerId !== user.value?.uid!) return
-      sellerRequestList.value.push(data)
-    // using once here because of a duplication bug when updates trigger this function
-    }, { onlyOnce: true });
-  })
-})
-</script> -->

@@ -24,6 +24,7 @@ export type Store = {
   id?: number
   name: string;
   description?: string;
+  phone: string
   location: Location;
 };
 
@@ -118,6 +119,7 @@ export type BlockchainUser = [
 export type CreateStoreDTO = {
   name: string;
   description: string;
+  phone: string
   latitude: number;
   longitude: number;
 };
