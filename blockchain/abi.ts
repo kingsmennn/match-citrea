@@ -175,6 +175,12 @@ export const marketAbi = [
         name: "updatedAt",
         type: "uint256",
       },
+      {
+        indexed: false,
+        internalType: "int256",
+        name: "sellersPriceQuote",
+        type: "int256",
+      },
     ],
     name: "RequestAccepted",
     type: "event",
