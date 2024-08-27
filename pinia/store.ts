@@ -63,6 +63,8 @@ export const useStoreStore = defineStore(STORE_STORE_KEY, {
           const store = await contract.userStores(userAddress, storeId);
           stores.push(store);
         }
+        // save to store
+        userStore.storeDetails = stores
         return stores;
       } catch (error) {
         console.error(error);

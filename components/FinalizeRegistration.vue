@@ -20,7 +20,15 @@
         class="tw-px-3 tw-py-1 tw-rounded-full tw-bg-white tw-text-black
         hover:tw-bg-white/80 tw-transition-all tw-duration-300"
         @click="complete">
-        Complete
+        <template v-if="!submitting">
+          Complete
+        </template>
+        <v-progress-circular
+          v-else
+          indeterminate
+          color="black"
+          size="20" width="2">
+        </v-progress-circular>
       </button>
     </div>
   </div>
@@ -31,8 +39,8 @@ import { useUserStore } from '@/pinia/user';
 import { AccountType, STORE_KEY_MIDDLEWARE, User } from '@/types';
 import { toast } from 'vue-sonner';
 
+const location = ref({ lat: 0, lng: 0 })
 const {
-  location,
   getDevicePosition,
   locationWarnNotice
 } = useGetLocation()
@@ -55,36 +63,59 @@ const subHeading = computed(()=>
 const userStore = useUserStore()
 const userCookie = useCookie<User>(STORE_KEY_MIDDLEWARE, { watch: true })
 const router = useRouter()
+const submitting = ref(false)
 const complete = () => {
+  submitting.value = true
   userStore.accountType === AccountType.BUYER ?
     getDevicePosition({
       // bePrecise:true,
-      callback: async () => {
-        try {
-          const res = await userStore.updateUser({
-            lat: location.value.lat,
-            long: location.value.lng
-          })
-          if (userStore?.userDetails) {
-            userStore.userDetails[3] = [
-              res?.location[0]!,
-              res?.location[1]!
-            ]
-            userCookie.value.location = [
-              res?.location[0]!,
-              res?.location[1]!
-            ]
-          }
-        } catch (e){
-          console.log(e)
+      callback: async (position) => {
+        location.value = {
+          lng: position.coords.longitude,
+          lat: position.coords.latitude
         }
       },
-      onError: (error) => {
-        toast.error('Please try again: '+error.message)
+      onError: async (error) => {
+        try {
+          const res = await userStore.getUserLocation()
+          location.value = {
+            lng: res.location.lng,
+            lat: res.location.lat,
+          }
+        } catch (error) {
+          toast.error('Please try again: '+(error as Error).message)
+          submitting.value = false
+        }
       }
     }) :
     userStore.accountType === AccountType.SELLER ? router.push('/accounts/store-setup') : null
 }
+
+const unwatch = watch(()=>location.value.lat, async (val)=>{
+  if(!val) return
+
+  try {
+    const res = await userStore.updateUser({
+      lat: location.value.lat,
+      long: location.value.lng
+    })
+    if (userStore?.userDetails) {
+      userStore.userDetails[3] = [
+        res?.location[0]!,
+        res?.location[1]!
+      ]
+      userCookie.value.location = [
+        res?.location[0]!,
+        res?.location[1]!
+      ]
+    }
+    unwatch()
+  } catch (e){
+    console.log(e)
+  } finally {
+    submitting.value = false
+  }
+}, { immediate: true })
 </script>
 
 <!-- <script setup lang="ts">
