@@ -1,7 +1,14 @@
 export const chainName = "Sepolia";
 const env = useRuntimeConfig().public;
 
-const chains = {
+const chains: {
+  [key: number]: {
+    name: string;
+    chainId: number;
+    rpcUrl: string;
+    blockExplorer: string;
+  };
+} = {
   11155111: {
     name: "Sepolia",
     chainId: 11155111,
@@ -16,7 +23,7 @@ const chains = {
   },
 };
 
-export const chainInfo = chains[env.chainId];
+export const chainInfo = chains[+env.chainId];
 
 export const LOCATION_DECIMALS = 18;
 export const PROJECT_ID = "73801621aec60dfaa2197c7640c15858";
