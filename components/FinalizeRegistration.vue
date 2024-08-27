@@ -97,7 +97,8 @@ const unwatch = watch(()=>location.value.lat, async (val)=>{
   try {
     const res = await userStore.updateUser({
       lat: location.value.lat,
-      long: location.value.lng
+      long: location.value.lng,
+      account_type: userStore.accountType
     })
     if (userStore?.userDetails) {
       userStore.userDetails[3] = [

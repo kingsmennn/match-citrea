@@ -189,6 +189,12 @@ export const useUserStore = defineStore(STORE_KEY, {
           updatedAt: new Date(details.updatedAt),
           accountType: details.accountType,
         };
+        console.log({
+          user,
+          details,
+          storeDetails: this.userDetails,
+          cookieDetails: userCookie.value
+        })
       } else if (!hasId && this.accountId) {
         this.blockchainError.userNotFound = true;
       }
@@ -233,20 +239,27 @@ export const useUserStore = defineStore(STORE_KEY, {
     }: Partial<CreateUserDTO>): Promise<
       { receipt: ethers.ContractTransaction; location: Location } | undefined
     > {
+      const payload = {
+        username: username || this.userDetails?.[1],
+        phone: phone || this.userDetails?.[2],
+        lat: ethers.parseUnits(
+          (lat || this.userDetails?.[3][1]!).toString(),
+          LOCATION_DECIMALS
+        ),
+        lng: ethers.parseUnits(
+          (long || this.userDetails?.[3][0]!).toString(),
+          LOCATION_DECIMALS
+        ),
+        account_type: account_type === AccountType.BUYER ? 0 : 1
+      }
       try {
         const contract = await this.getContract();
         const tx = await contract.updateUser(
-          username || this.userDetails?.[1],
-          phone || this.userDetails?.[2],
-          ethers.parseUnits(
-            (lat || this.userDetails?.[3][1]!).toString(),
-            LOCATION_DECIMALS
-          ),
-          ethers.parseUnits(
-            (long || this.userDetails?.[3][0]!).toString(),
-            LOCATION_DECIMALS
-          ),
-          account_type === AccountType.BUYER ? 0 : 1
+          payload.username,
+          payload.phone,
+          payload.lat,
+          payload.lng,
+          payload.account_type
         );
 
         const receipt = await tx.wait();
