@@ -5,26 +5,22 @@ const chains: {
   [key: number]: {
     name: string;
     chainId: number;
-    rpcUrl: string;
     blockExplorer: string;
   };
 } = {
   11155111: {
     name: "Sepolia",
     chainId: 11155111,
-    rpcUrl: "",
     blockExplorer: "https://sepolia.etherscan.io",
   },
   80002: {
     name: "Amoy",
     chainId: 80002,
-    rpcUrl: "",
     blockExplorer: "https://amoy.polygonscan.com/",
   },
   97: {
     name: "BSC Testnet",
     chainId: 97,
-    rpcUrl: "",
     blockExplorer: "https://testnet.bscscan.com",
   },
 };
