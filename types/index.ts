@@ -17,6 +17,7 @@ export type User = {
   phone: string;
   location: Location;
   createdAt: Date;
+  updatedAt: Date;
   accountType: AccountType;
   stores?: Store[];
 };
@@ -107,12 +108,14 @@ type id = number;
 type username = string;
 type phone = string;
 type createdAt = number;
+type updatedAt = number;
 export type BlockchainUser = [
   id,
   username,
   phone,
   Location,
   createdAt,
+  updatedAt,
   AccountType
 ];
 
