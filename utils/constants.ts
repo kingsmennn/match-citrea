@@ -21,6 +21,12 @@ const chains: {
     rpcUrl: "",
     blockExplorer: "https://amoy.polygonscan.com/",
   },
+  97: {
+    name: "BSC Testnet",
+    chainId: 97,
+    rpcUrl: "",
+    blockExplorer: "https://testnet.bscscan.com",
+  },
 };
 
 export const chainInfo = chains[+env.chainId];
