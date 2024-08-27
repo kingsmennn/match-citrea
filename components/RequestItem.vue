@@ -20,9 +20,14 @@
               <p class="tw-text-sm">ID: {{ requestId }}</p>
 
               <template v-if="hasLocked && lifecycle===RequestLifecycleIndex.ACCEPTED_BY_BUYER">
-                <p class="tw-text-sm">Store name: <strong>{{ usedSellerStoreDetails?.name }}</strong></p>
-                <p class="tw-text-sm">Contact number: <strong>{{ usedSellerStoreDetails?.phone }}</strong></p>
-                <p class="tw-text-sm">Price: <strong>₦{{ Number(sellersPriceQuote).toLocaleString() }}</strong></p>
+                <template v-if="fetchingStoreDetails">
+                  <p>Fetching store details...</p>
+                </template>
+                <template v-else>
+                  <p class="tw-text-sm">Store name: <strong>{{ usedSellerStoreDetails?.name }}</strong></p>
+                  <p class="tw-text-sm">Contact number: <strong>{{ usedSellerStoreDetails?.phone }}</strong></p>
+                  <p class="tw-text-sm">Price: <strong>₦{{ Number(sellersPriceQuote).toLocaleString() }}</strong></p>
+                </template>
               </template>
             </div>
           </div>
@@ -185,8 +190,11 @@ const usedSellerStoreDetails = computed(()=>{
       ]
     }
 })
+
+const fetchingStoreDetails = ref(false)
 watch(()=>props.lockedSellerId, async (val)=>{
   if(!val) return
+  fetchingStoreDetails.value = true
   try {
     const res = await userStore.fetchUserById(props.lockedSellerId!) as unknown as { userAddress: string }
     const stores = await storesStore.getUserStores(res?.userAddress)
@@ -194,6 +202,8 @@ watch(()=>props.lockedSellerId, async (val)=>{
     sellerStore.value = !!stores[0] ? stores[0] : undefined
   } catch (error) {
     console.log(error)
+  } finally {
+    fetchingStoreDetails.value = false
   }
 }, { immediate: true })
 </script>
