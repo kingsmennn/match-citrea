@@ -15,8 +15,8 @@ const form = ref({
   locationObtained: false
 })
 
+const location = ref({ lat: 0, lng: 0 })
 const {
-  location,
   getDevicePosition,
   locationWarnNotice
 } = useGetLocation()
@@ -26,13 +26,26 @@ const handleLocation = ()=> {
   gettingLocation.value = true
   getDevicePosition({
     // bePrecise:true,
-    callback: () => {
+    callback: (position) => {
+      location.value = {
+        lng: position.coords.longitude,
+        lat: position.coords.latitude
+      }
       form.value.locationObtained = true
       gettingLocation.value = false
     },
-    onError: (error) => {
-      toast.error('Please try again: '+error.message)
-      gettingLocation.value = false
+    onError: async (error) => {
+      try {
+        const res = await userStore.getUserLocation()
+        location.value = {
+          lng: res.location.lng,
+          lat: res.location.lat,
+        }
+      } catch (error) {
+        toast.error('Please try again: '+(error as Error).message)
+      } finally {
+        gettingLocation.value = false
+      }
     }
   })
 }

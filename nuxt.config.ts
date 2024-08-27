@@ -21,6 +21,7 @@ export default defineNuxtConfig({
       hederaBaseUrl: process.env.HEDERA_BASE_URL,
       contractId: process.env.CONTRACT_ID,
       chainId: process.env.CHAIN_ID,
+      googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY
     }
   },
   vuetify: {
