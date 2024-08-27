@@ -1,6 +1,11 @@
 export const marketAbi = [
   {
     inputs: [],
+    name: "Marketplace_InvalidUser",
+    type: "error",
+  },
+  {
+    inputs: [],
     name: "Marketplace__IndexOutOfBounds",
     type: "error",
   },
@@ -342,6 +347,37 @@ export const marketAbi = [
       },
     ],
     name: "UserCreated",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "userAddress",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "userId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "string",
+        name: "username",
+        type: "string",
+      },
+      {
+        indexed: false,
+        internalType: "uint8",
+        name: "accountType",
+        type: "uint8",
+      },
+    ],
+    name: "UserUpdated",
     type: "event",
   },
   {
@@ -759,6 +795,39 @@ export const marketAbi = [
   {
     inputs: [
       {
+        internalType: "string",
+        name: "_username",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "_phone",
+        type: "string",
+      },
+      {
+        internalType: "int256",
+        name: "_latitude",
+        type: "int256",
+      },
+      {
+        internalType: "int256",
+        name: "_longitude",
+        type: "int256",
+      },
+      {
+        internalType: "enum Marketplace.AccountType",
+        name: "_accountType",
+        type: "uint8",
+      },
+    ],
+    name: "updateUser",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "address",
         name: "user",
         type: "address",
@@ -900,6 +969,11 @@ export const marketAbi = [
       {
         internalType: "uint256",
         name: "createdAt",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "updatedAt",
         type: "uint256",
       },
       {
