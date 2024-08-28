@@ -6,7 +6,7 @@
 
 ### Team and Project Introduction
 
-Our team consists of **Favour**, a Frontend Developer, and **David (DavyKing)**, a Blockchain Developer. With extensive experience in blockchain development, we've worked on various projects that leverage distributed ledger technologies to create secure and scalable applications. **Match** is our latest innovation, designed to address the challenges of connecting buyers and sellers in a decentralized, trustless environment using the unique capabilities of Binance Smart Chain.
+Our team consists of **Favour**, a Frontend Developer, and **David (DavyKing)**, a Blockchain Developer. With extensive experience in blockchain development, we've worked on various projects that leverage smart contract technologies to create secure and scalable applications. **Match** is our latest innovation, designed to address the challenges of connecting buyers and sellers in a decentralized, trustless environment using the unique capabilities of Binance Smart Chain.
 
 ### Project Summary
 
@@ -128,8 +128,8 @@ Certainly! Here's an outline for "Match" based on the categories you provided:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/Kingsmen-hackers/match-client
-   cd match-client
+   git clone https://github.com/kingsmennn/imatch-evm
+   cd imatch-evm
    ```
 
 2. **Install Dependencies:**
@@ -192,7 +192,5 @@ Match is licensed under the MIT License.
 ---
 
 With Match, experience a seamless, secure, and efficient marketplace on the Binance Smart Chain network, where buyers and sellers connect with confidence.# imatch-evm
-
-# imatch-evm
 
 # imatch-evm
