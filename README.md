@@ -143,10 +143,11 @@ Certainly! Here's an outline for "Match" based on the categories you provided:
    Create a `.env` file in the root directory and add the following variables:
 
    ```bash
-    LIGHTHOUSE_API_KEY = 274fXXXXXXX.947
-    Binance Smart Chain_BASE_URL = https://testnet.mirrornode.Binance Smart Chain.com
-    MATCH_API_URL = https://ninth-matter-407315.wn.r.appspot.com
-    CONTRACT_ID = 0.0.4708377
+   LIGHTHOUSE_API_KEY = 274fXXXXXXX.947
+   MATCH_API_URL = https://ninth-matter-407315.wn.r.appspot.com
+   CONTRACT_ID = 0x6EA48b89df4BA7518a9B6D72878dDC421Cfb3ce7
+   CHAIN_ID = 97
+   GOOGLE_MAPS_API_KEY = AIXXXXXXX_29M
    ```
 
 4. **Start the Development Server:**
