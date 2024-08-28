@@ -175,11 +175,11 @@ Certainly! Here's an outline for "Match" based on the categories you provided:
 
 ### Indexer
 
-- https://github.com/Kingsmen-hackers/finder-backend
+- https://github.com/Kingsmen-hackers/finder-backend-evm
 
 ### Contracts
 
-- https://github.com/Kingsmen-hackers/match-contracts
+- https://github.com/Kingsmen-hackers/match-contracts-evm
 
 ### Contributing
 
