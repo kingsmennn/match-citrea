@@ -51,9 +51,65 @@ Our solution is evaluated based on the following criteria:
 
 ### Demo
 
-Check out our demo video to see Match in action! The video showcases the technical strengths, usability, and performance of our solution. Watch the walkthrough on [YouTube](https://www.youtube.com/watch?v=zecp5zHwz-8) to learn more about how Match can revolutionize the marketplace experience on Hedera.
+Check out our demo video to see Match in action! The video showcases the technical strengths, usability, and performance of our solution. Watch the walkthrough on [YouTube](https://www.youtube.com/watch?v=fVnm9ttV68o) to learn more about how Match can revolutionize the marketplace experience on Hedera.
 
-### Future Roadmap
+Certainly! Here's an outline for "Match" based on the categories you provided:
+
+---
+
+### Roadmap: Future Plans for "Match"
+
+1. **Post-Hackathon Development**:
+   - **Enhanced Features**: Integrate advanced search algorithms and AI-driven recommendation engines to improve the accuracy of matching buyers and sellers.
+   - **User Experience**: Refine the user interface and user experience based on feedback to ensure an intuitive and engaging experience.
+   - **Scalability**: Optimize the platform for higher scalability to accommodate a growing number of users and transactions.
+   - **Security**: Implement advanced security measures to protect user data and transactions, including encryption and multi-factor authentication.
+   - **Partnerships**: Establish partnerships with other platforms and services to expand the ecosystem and enhance the functionality of "Match".
+
+2. **Long-Term Vision**:
+   - **Global Expansion**: Extend the platform's reach to international markets, considering localization and regulatory compliance.
+   - **Integration with Additional Blockchain Networks**: Explore integration with other blockchain networks to enhance the platform's versatility and user base.
+   - **Continuous Improvement**: Regularly update the platform with new features and improvements based on user feedback and technological advancements.
+
+### Community Engagement: Building a Strong User Base
+
+1. **Feedback Collection**:
+   - **Surveys and Polls**: Regularly gather user feedback through surveys and polls to understand their needs and preferences.
+   - **Focus Groups**: Organize focus groups to obtain in-depth insights into user experiences and suggestions for improvement.
+
+2. **Showcasing Community Endorsements**:
+   - **Testimonials**: Highlight positive feedback and testimonials from users who have successfully used the platform.
+   - **Case Studies**: Share success stories and case studies demonstrating how "Match" has helped users find the best deals and connect with reputable sellers.
+
+3. **Engagement Activities**:
+   - **Webinars and Meetups**: Host webinars and meetups to engage with the community, answer questions, and showcase new features.
+   - **Social Media**: Maintain an active presence on social media platforms to share updates, interact with users, and build a community around "Match".
+
+### Business Model: Sustainable Revenue Generation
+
+1. **Revenue Streams**:
+   - **Transaction Fees**: Charge a fee for each transaction completed on the platform.
+   - **Premium Listings**: Offer paid options for sellers to promote their listings and increase visibility.
+   - **Subscription Plans**: Introduce subscription plans for users who want access to advanced features or additional benefits.
+
+2. **Monetization Strategies**:
+   - **Advertising**: Provide advertising opportunities for businesses to reach a targeted audience within the platform.
+   - **Affiliate Partnerships**: Partner with other businesses and services to offer affiliate products and earn commissions on referrals.
+
+3. **Financial Projections**:
+   - **Revenue Forecasting**: Develop financial projections based on estimated user growth, transaction volume, and revenue from various streams.
+   - **Budget Planning**: Create a detailed budget plan to manage expenses and ensure the sustainability of the platform.
+
+### Innovative Design: Cutting-Edge Features and Technologies
+
+1. **Blockchain Integration**:
+   - **Smart Contracts**: Use smart contracts to automate and secure transactions, ensuring transparency and trust.
+   - **Decentralization**: Leverage blockchain technology to decentralize the platform, enhancing security and reducing reliance on intermediaries.
+
+2. **User Interface and Experience**:
+   - **Intuitive Design**: Implement a user-friendly interface that simplifies navigation and enhances the overall user experience.
+   - **Responsive Layout**: Ensure the platform is fully responsive and accessible across various devices and screen sizes.
+
 
 **Key Learnings:**
 - The importance of a seamless user experience in dApps.
