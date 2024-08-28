@@ -40,7 +40,7 @@ Our solution is evaluated based on the following criteria:
 3. **Contract Interactions:**
    - **CreateOffer:** Sellers can create an offer with specified parameters.
    - **AcceptOffer:** Buyers can accept an offer, initiating the transaction process.
-   - **RemoveOffer:** Sellers can remove an existing offer.
+   - **Create Request:** Buyers can create specific requests for products or services they need, allowing sellers to respond with tailored offers.
    - **GetOffer:** Retrieve detailed information about a specific offer.
    - **GetRequest:** Retrieve details about a specific buyer request.
    - **GetUserStore:** Retrieve store information for a specific user.
