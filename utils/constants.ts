@@ -23,6 +23,11 @@ const chains: {
     chainId: 97,
     blockExplorer: "https://testnet.bscscan.com",
   },
+  1337: {
+    name: "BSC Testnet",
+    chainId: 1337,
+    blockExplorer: "https://testnet.bscscan.com",
+  },
 };
 
 export const chainInfo = chains[+env.chainId];
@@ -38,4 +43,4 @@ export const appMetaData = {
   url: window.location.origin,
 };
 
-export const TIME_TILL_LOCK = 15 * 60 * 1000; // ms
+export const TIME_TILL_LOCK = 1 * 60 * 1000; // ms

@@ -41,6 +41,14 @@ export const useRequestsStore = defineStore("requests", {
       try {
         const contract = await userStore.getContract();
 
+        // console.log({
+        //   name: name,
+        //   description: description,
+        //   images: images,
+        //   latitude: latitude.toString(),
+        //   longitude: longitude.toString()
+        // })
+
         const receipt = await contract.createRequest(
           name,
           description,
@@ -185,7 +193,8 @@ export const useRequestsStore = defineStore("requests", {
     async acceptOffer(offerId: number): Promise<any | undefined> {
       const userStore = useUserStore();
 
-      const env = useRuntimeConfig().public;
+      // const env = useRuntimeConfig().public;
+      console.log({ offerId });
 
       try {
         const contract = await userStore.getContract();
