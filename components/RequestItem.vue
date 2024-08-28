@@ -19,7 +19,7 @@
               <h3 class="tw-text-xl tw-truncate tw-font-semibold">{{ itemName }}</h3>
               <p class="tw-text-sm">ID: {{ requestId }}</p>
 
-              <template v-if="hasLocked && lifecycle===RequestLifecycleIndex.ACCEPTED_BY_BUYER">
+              <template v-if="hasLocked && lifecycle===RequestLifecycleIndex.ACCEPTED_BY_BUYER && accountType===AccountType.BUYER">
                 <template v-if="fetchingStoreDetails">
                   <p>Fetching store details...</p>
                 </template>
