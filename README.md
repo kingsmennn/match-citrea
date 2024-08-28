@@ -167,7 +167,8 @@ Certainly! Here's an outline for "Match" based on the categories you provided:
 
 ### Usage
 
-- **Creating Offers:** Sellers can log in, create new offers by providing the necessary details (price, images, etc.), and list them on the platform.
+- **Creating Request:** Buyers can log in, create new request by providing the necessary details (name, description, images, etc.), and list them on the platform.
+- **Creating Offers:** Sellers can log in, create new offers to a buyers request by providing the necessary details (price, images, etc.), and list them on the platform.
 - **Accepting Offers:** Buyers can browse offers related to their requests, accept the most suitable ones, and initiate transactions.
 - **Managing Stores:** Sellers can manage their stores, view store details, and retrieve all their store IDs.
 
