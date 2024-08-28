@@ -266,8 +266,8 @@ export const useUserStore = defineStore(STORE_KEY, {
         return {
           receipt,
           location: [
-            long || this.userDetails?.[3][0]!,
-            lat || this.userDetails?.[3][1]!,
+            Number(payload.lng) || this.userDetails?.[3][0]!,
+            Number(payload.lat) || this.userDetails?.[3][1]!,
           ],
         };
       } catch (error) {
