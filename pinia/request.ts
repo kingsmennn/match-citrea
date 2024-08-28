@@ -45,8 +45,8 @@ export const useRequestsStore = defineStore("requests", {
           name,
           description,
           images,
-          latitude,
-          longitude
+          latitude.toString(),
+          longitude.toString()
         );
         return receipt;
       } catch (error) {

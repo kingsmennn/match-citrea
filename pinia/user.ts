@@ -212,8 +212,8 @@ export const useUserStore = defineStore(STORE_KEY, {
         const tx = await contract.createUser(
           username,
           phone,
-          ethers.parseUnits(lat.toString(), LOCATION_DECIMALS),
-          ethers.parseUnits(long.toString(), LOCATION_DECIMALS),
+          ethers.parseUnits(lat.toString(), LOCATION_DECIMALS).toString(),
+          ethers.parseUnits(long.toString(), LOCATION_DECIMALS).toString(),
           account_type === AccountType.BUYER ? 0 : 1
         );
 
