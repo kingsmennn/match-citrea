@@ -26,8 +26,8 @@ Our solution is evaluated based on the following criteria:
 
 - **Create Offers:** Sellers can create offers for products or services, specifying price, images, and related details.
 - **Accept Offers:** Buyers can review and accept offers that best meet their needs.
-- **Remove Offers:** Sellers have the ability to remove offers if they are no longer available.
 - **View Offers:** Buyers can view all offers related to their requests and select the most suitable one.
+- **Create Request:** Buyers can create specific requests for products or services they need, allowing sellers to respond with tailored offers.
 - **Get Request Details:** Users can retrieve detailed information about requests, including seller IDs and offer images.
 - **Store Management:** Sellers can manage their stores, including viewing store details and retrieving store IDs.
 
