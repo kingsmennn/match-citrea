@@ -1,26 +1,26 @@
-### Match - Connecting Buyers and Sellers on Binance Smart Chain
+### Match - Connecting Buyers and Sellers on Citrea Chain
 
 ---
 
-**Match** is a decentralized application (dApp) built on the Binance Smart Chain platform that connects buyers with sellers, allowing them to find the best deals on products and services. Using smart contracts on Binance Smart Chain, Match ensures secure, transparent, and efficient transactions between parties.
+**Match** is a decentralized application (dApp) built on the Citrea Chain platform that connects buyers with sellers, allowing them to find the best deals on products and services. Using smart contracts on Citrea Chain, Match ensures secure, transparent, and efficient transactions between parties.
 
 ### Team and Project Introduction
 
-Our team consists of **Favour**, a Frontend Developer, and **David (DavyKing)**, a Blockchain Developer. With extensive experience in blockchain development, we've worked on various projects that leverage smart contract technologies to create secure and scalable applications. **Match** is our latest innovation, designed to address the challenges of connecting buyers and sellers in a decentralized, trustless environment using the unique capabilities of Binance Smart Chain.
+Our team consists of **Favour**, a Frontend Developer, and **David (DavyKing)**, a Blockchain Developer. With extensive experience in blockchain development, we've worked on various projects that leverage smart contract technologies to create secure and scalable applications. **Match** is our latest innovation, designed to address the challenges of connecting buyers and sellers in a decentralized, trustless environment using the unique capabilities of Citrea Chain.
 
 ### Project Summary
 
-**Match** aims to create a seamless, secure, and efficient marketplace on the Binance Smart Chain network. By utilizing Binance Smart Chain's fast, fair, and secure consensus mechanism, Match allows sellers to create and manage offers for products or services, while buyers can easily browse, accept, and complete transactions. The dApp leverages smart contracts to ensure that all interactions are transparent and tamper-proof. This approach addresses the issues of trust and security that often plague traditional online marketplaces.
+**Match** aims to create a seamless, secure, and efficient marketplace on the Citrea Chain network. By utilizing Citrea Chain's fast, fair, and secure consensus mechanism, Match allows sellers to create and manage offers for products or services, while buyers can easily browse, accept, and complete transactions. The dApp leverages smart contracts to ensure that all interactions are transparent and tamper-proof. This approach addresses the issues of trust and security that often plague traditional online marketplaces.
 
 Our solution is evaluated based on the following criteria:
 
 1. **Innovation:** Match introduces a novel way of connecting buyers and sellers through a decentralized platform.
-2. **Technical Complexity:** The use of smart contracts on Binance Smart Chain and integration with Metamask and Ethers.js demonstrates a high level of technical expertise.
+2. **Technical Complexity:** The use of smart contracts on Citrea Chain and integration with Metamask and Ethers.js demonstrates a high level of technical expertise.
 3. **Usability:** The user interface built with Nuxt ensures a smooth user experience.
 4. **Impact:** By decentralizing the marketplace, Match reduces the risk of fraud and increases transparency.
-5. **Scalability:** Built on Binance Smart Chain, Match can handle a high volume of transactions with minimal latency.
-6. **Security:** Binance Smart Chain's consensus mechanism ensures that all transactions are secure and immutable.
-7. **Sustainability:** Match is designed to be energy-efficient, leveraging Binance Smart Chain's low power consumption.
+5. **Scalability:** Built on Citrea Chain, Match can handle a high volume of transactions with minimal latency.
+6. **Security:** Citrea Chain's consensus mechanism ensures that all transactions are secure and immutable.
+7. **Sustainability:** Match is designed to be energy-efficient, leveraging Citrea Chain's low power consumption.
 
 ### Key Features
 
@@ -33,9 +33,9 @@ Our solution is evaluated based on the following criteria:
 
 ### How It Works
 
-1. **Smart Contracts:** Match utilizes smart contracts deployed on the Binance Smart Chain network. These contracts handle the creation, management, and retrieval of offers, requests, and user stores.
+1. **Smart Contracts:** Match utilizes smart contracts deployed on the Citrea Chain network. These contracts handle the creation, management, and retrieval of offers, requests, and user stores.
 
-2. **Connection via Metamask:** The dApp connects to users' Binance Smart Chain accounts using Metamask, enabling secure transactions and contract interactions.
+2. **Connection via Metamask:** The dApp connects to users' Citrea Chain accounts using Metamask, enabling secure transactions and contract interactions.
 
 3. **Contract Interactions:**
    - **CreateOffer:** Sellers can create an offer with specified parameters.
@@ -48,14 +48,6 @@ Our solution is evaluated based on the following criteria:
    - **GetBuyerOffers:** Retrieve all offers related to a buyer's request.
    - **GetOfferImages:** Retrieve all images associated with a specific offer.
    - **GetRequestSellerIds:** Retrieve all seller IDs associated with a specific request.
-
-### Demo
-
-Check out our demo video to see Match in action! The video showcases the technical strengths, usability, and performance of our solution. Watch the walkthrough on [YouTube](https://www.youtube.com/watch?v=fVnm9ttV68o) to learn more about how Match can revolutionize the marketplace experience on Binance Smart Chain.
-
-Certainly! Here's an outline for "Match" based on the categories you provided:
-
----
 
 ### Roadmap: Future Plans for "Match"
 
@@ -146,7 +138,7 @@ Certainly! Here's an outline for "Match" based on the categories you provided:
    LIGHTHOUSE_API_KEY = 274fXXXXXXX.947
    MATCH_API_URL = https://ninth-matter-407315.wn.r.appspot.com
    CONTRACT_ID = 0x6EA48b89df4BA7518a9B6D72878dDC421Cfb3ce7
-   CHAIN_ID = 97
+   CHAIN_ID = 5115
    GOOGLE_MAPS_API_KEY = AIXXXXXXX_29M
    ```
 
@@ -191,6 +183,6 @@ Match is licensed under the MIT License.
 
 ---
 
-With Match, experience a seamless, secure, and efficient marketplace on the Binance Smart Chain network, where buyers and sellers connect with confidence.# imatch-evm
+With Match, experience a seamless, secure, and efficient marketplace on the Citrea Chain network, where buyers and sellers connect with confidence.# imatch-evm
 
 # imatch-evm
