@@ -23,6 +23,11 @@ const chains: {
     chainId: 97,
     blockExplorer: "https://testnet.bscscan.com",
   },
+  5115: {
+    name: "Citrea Testnet",
+    chainId: 5115,
+    blockExplorer: "https://explorer.testnet.citrea.xyz",
+  },
   1337: {
     name: "BSC Testnet",
     chainId: 1337,
