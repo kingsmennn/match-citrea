@@ -120,8 +120,8 @@ Our solution is evaluated based on the following criteria:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/kingsmennn/imatch-evm
-   cd imatch-evm
+   git clone https://github.com/kingsmennn/match-citrea
+   cd match-citrea
    ```
 
 2. **Install Dependencies:**
@@ -136,7 +136,7 @@ Our solution is evaluated based on the following criteria:
 
    ```bash
    LIGHTHOUSE_API_KEY = 274fXXXXXXX.947
-   MATCH_API_URL = https://ninth-matter-407315.wn.r.appspot.com
+   MATCH_API_URL = 
    CONTRACT_ID = 0x6EA48b89df4BA7518a9B6D72878dDC421Cfb3ce7
    CHAIN_ID = 5115
    GOOGLE_MAPS_API_KEY = AIXXXXXXX_29M
@@ -171,7 +171,7 @@ Our solution is evaluated based on the following criteria:
 
 ### Contracts
 
-- https://github.com/Kingsmen-hackers/match-contracts-evm
+- https://github.com/Imdavyking/match-contracts-citrea
 
 ### Contributing
 
